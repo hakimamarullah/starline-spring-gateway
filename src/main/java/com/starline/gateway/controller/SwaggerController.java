@@ -21,6 +21,9 @@ public class SwaggerController {
         List<Map<String, String>> urls = discoveryClient.getServices().stream()
                 .map(name -> {
                     String url = "/" + name.toLowerCase() + "/v3/api-docs";
+                    if (name.toLowerCase().contains("whatsapp")) {
+                        url = "/" + name.toLowerCase() + "/swagger/json";
+                    }
                     return Map.of("name", name, "url", url);
                 })
                 .toList();
